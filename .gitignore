@@ -10,3 +10,24 @@ dist/
 tier1-*.json
 tier1-*.err
 review-*.png
+
+# img2threejs build pipeline artifacts — evidence, QA renders, and specs
+# used to construct the model. Not needed to run the app; the final
+# textures/model logic live in public/ and src/.
+.img2threejs/
+pbr-evidence/
+pbr-evidence-delit/
+renders/
+delit/
+detail-inventory/
+markings/
+material-crops-9/
+evidence/
+di.json
+di9.json
+assessment.json
+object-sculpt-spec.json
+image-analysis.md
+build_spec.py
+patch_spec2.py
+patch_spec3.py
