@@ -1,0 +1,12 @@
+node_modules/
+.env
+dist/
+*.log
+
+# Ad-hoc pipeline debug artifacts (gate diagnostics that failed in this
+# environment's Python version — see README/build history) and scratch
+# screenshots taken directly during manual verification, not the curated
+# evidence in renders/.
+tier1-*.json
+tier1-*.err
+review-*.png

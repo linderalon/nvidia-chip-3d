@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NVIDIA Academy — Jetson AGX Xavier Module Anatomy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --nv-green: #76b900;
+        --nv-green-dark: #5e9400;
+        --nv-bg: #ffffff;
+        --nv-panel: #f7f8f6;
+        --nv-panel-2: #f2f4f1;
+        --nv-border: rgba(0,0,0,0.1);
+        --nv-text: #14171a;
+        --nv-text-dim: #62696a;
+        --font-display: 'Rajdhani', sans-serif;
+        --font-body: 'Barlow', sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; background: var(--nv-bg); color: var(--nv-text);
+        font-family: var(--font-body); -webkit-font-smoothing: antialiased;
+      }
+
+      /* ---------- Top nav ---------- */
+      .topnav {
+        position: sticky; top: 0; z-index: 40; height: 60px; display: flex; align-items: center;
+        gap: 22px; padding: 0 28px; background: #fff; border-bottom: 1px solid var(--nv-border);
+      }
+      .topnav .logo-mark { height: 28px; width: auto; flex-shrink: 0; display: block; }
+      .topnav .divider { width: 1px; height: 22px; background: var(--nv-border); }
+      .topnav .section-name { font-size: 15px; font-weight: 600; color: var(--nv-text); }
+      .topnav nav { display: flex; gap: 26px; margin-left: 10px; }
+      .topnav nav a {
+        font-size: 13.5px; color: var(--nv-text-dim); text-decoration: none; font-weight: 500;
+        transition: color 0.15s;
+      }
+      .topnav nav a:hover { color: var(--nv-text); }
+      .topnav .spacer { flex: 1; }
+      .topnav .search-icon {
+        width: 18px; height: 18px; border: 1.5px solid var(--nv-text-dim); border-radius: 50%;
+        position: relative; margin-right: 6px; opacity: 0.8;
+      }
+      .topnav .search-icon::after {
+        content: ''; position: absolute; width: 7px; height: 1.5px; background: var(--nv-text-dim);
+        transform: rotate(45deg); bottom: -3px; right: -4px;
+      }
+      .signin-btn {
+        font-family: var(--font-body); font-weight: 600; font-size: 13px; color: #fff;
+        background: var(--nv-green-dark); border: none; border-radius: 3px; padding: 8px 18px;
+        cursor: pointer; transition: background 0.15s;
+      }
+      .signin-btn:hover { background: var(--nv-green); }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        position: relative; padding: 56px 40px 40px; overflow: hidden;
+        background: linear-gradient(115deg, #ffffff 40%, #f4f9ec 78%, #eef6dc 100%);
+        border-bottom: 3px solid var(--nv-green);
+      }
+      .hero::before {
+        content: ''; position: absolute; inset: 0; opacity: 0.6; pointer-events: none;
+        background-image:
+          repeating-linear-gradient(115deg, transparent 0 38px, rgba(118,185,0,0.08) 38px 39px),
+          repeating-linear-gradient(25deg, transparent 0 60px, rgba(118,185,0,0.05) 60px 61px);
+      }
+      .hero::after {
+        content: ''; position: absolute; right: -120px; top: -80px; width: 480px; height: 480px;
+        background: radial-gradient(circle, rgba(118,185,0,0.22) 0%, rgba(118,185,0,0.06) 45%, transparent 72%);
+        filter: blur(6px); pointer-events: none;
+      }
+      .hero .eyebrow {
+        position: relative; font-size: 12.5px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+        color: var(--nv-green-dark); margin: 0 0 10px;
+      }
+      .hero h1 {
+        position: relative; font-family: var(--font-display); font-weight: 700; font-size: 46px;
+        line-height: 1.05; margin: 0 0 14px; max-width: 720px; letter-spacing: 0.2px; color: var(--nv-text);
+      }
+      .hero p {
+        position: relative; font-size: 15px; line-height: 1.6; color: var(--nv-text-dim);
+        max-width: 620px; margin: 0;
+      }
+
+      /* ---------- Tab strip ---------- */
+      .tabbar {
+        display: flex; align-items: center; gap: 30px; padding: 0 40px; height: 52px;
+        background: var(--nv-panel); border-bottom: 1px solid var(--nv-border);
+      }
+      .tabbar .tab {
+        position: relative; height: 100%; display: flex; align-items: center; font-size: 14px;
+        font-weight: 500; color: var(--nv-text-dim); background: none; border: none; cursor: pointer;
+        font-family: var(--font-body); padding: 0; transition: color 0.15s;
+      }
+      .tabbar .tab:hover { color: var(--nv-text); }
+      .tabbar .tab.active { color: var(--nv-text); }
+      .tabbar .tab.active::after {
+        content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--nv-green);
+      }
+      .tabbar .tab-spacer { flex: 1; }
+
+      /* ---------- Overview section ---------- */
+      .overview-wrap {
+        display: flex; gap: 40px; padding: 40px; max-width: 1360px; margin: 0 auto; align-items: flex-start;
+      }
+      .overview-main { flex: 1; min-width: 0; }
+      .overview-main h2 {
+        font-family: var(--font-display); font-weight: 700; font-size: 24px; margin: 0 0 14px; color: var(--nv-text);
+      }
+      .overview-main p {
+        font-size: 14.5px; line-height: 1.7; color: var(--nv-text-dim); margin: 0 0 18px; max-width: 680px;
+      }
+      .overview-main ul.objectives { margin: 0 0 28px; padding-left: 0; list-style: none; max-width: 680px; }
+      .overview-main ul.objectives li {
+        font-size: 14px; line-height: 1.6; color: #333d3a; padding-left: 24px; position: relative; margin-bottom: 10px;
+      }
+      .overview-main ul.objectives li::before {
+        content: ''; position: absolute; left: 0; top: 7px; width: 9px; height: 9px;
+        background: var(--nv-green); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+      .details-card {
+        width: 300px; flex-shrink: 0; background: var(--nv-panel); border: 1px solid var(--nv-border);
+        border-radius: 4px; padding: 22px 22px 6px; border-top: 3px solid var(--nv-green);
+      }
+      .details-card h3 {
+        font-family: var(--font-display); font-weight: 700; font-size: 16px; margin: 0 0 16px;
+        text-transform: uppercase; letter-spacing: 0.4px; color: var(--nv-text);
+      }
+      .details-card .row {
+        display: flex; justify-content: space-between; gap: 10px; padding: 12px 0;
+        border-top: 1px solid var(--nv-border); font-size: 13px;
+      }
+      .details-card .row:first-of-type { border-top: none; }
+      .details-card .row .k { color: var(--nv-text-dim); font-weight: 500; }
+      .details-card .row .v { color: var(--nv-text); font-weight: 600; text-align: right; }
+
+      /* ---------- 3D Model section (viewer untouched functionally) ---------- */
+      #model-section { padding: 0 40px 48px; max-width: 1360px; margin: 0 auto; }
+      #model-section .model-heading {
+        display: flex; align-items: baseline; justify-content: space-between; padding: 32px 0 18px;
+      }
+      #model-section .model-heading h2 {
+        font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 0; color: var(--nv-text);
+      }
+      #model-section .model-heading .hint { font-size: 12.5px; color: var(--nv-text-dim); }
+
+      #layout {
+        display: flex; height: 74vh; min-height: 520px; width: 100%;
+        border: 1px solid var(--nv-border); border-radius: 6px; overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      }
+
+      #sidebar {
+        width: 380px; min-width: 380px; height: 100%; overflow-y: auto;
+        background: var(--nv-panel-2); border-right: 1px solid var(--nv-border);
+        color: var(--nv-text); box-sizing: border-box; padding: 18px 16px 40px;
+      }
+      #sidebar h1 {
+        font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--nv-text);
+        margin: 0 0 4px; letter-spacing: 0.2px; text-transform: uppercase;
+      }
+      #sidebar .subtitle { font-size: 12px; color: var(--nv-text-dim); margin: 0 0 18px; line-height: 1.5; }
+
+      .component-card {
+        border: 1px solid var(--nv-border); border-radius: 6px; padding: 12px 14px;
+        margin-bottom: 10px; cursor: pointer; transition: background 0.15s, border-color 0.15s;
+        background: #fff;
+      }
+      .component-card:hover, .component-card.active {
+        background: rgba(118, 185, 0, 0.1); border-color: rgba(118, 185, 0, 0.55);
+      }
+      .component-card.expanded {
+        background: rgba(118, 185, 0, 0.06); border-color: rgba(118, 185, 0, 0.4);
+      }
+      .component-card .card-header { display: flex; align-items: center; }
+      .component-card .card-header::after {
+        content: '+'; margin-left: auto; color: var(--nv-text-dim); font-size: 15px; font-weight: 400;
+        transition: transform 0.15s;
+      }
+      .component-card.expanded .card-header::after { content: '\2212'; color: var(--nv-green-dark); }
+      .component-card .swatch {
+        display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+        margin-right: 8px; flex-shrink: 0;
+      }
+      .component-card h2 { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; margin: 0; color: var(--nv-text); }
+      .component-card .details { display: none; margin-top: 8px; }
+      .component-card.expanded .details { display: block; }
+      .component-card .role { font-size: 11px; color: var(--nv-text-dim); margin: 0 0 8px; padding-left: 18px; }
+      .component-card ul { margin: 0; padding-left: 18px; }
+      .component-card li { font-size: 12px; line-height: 1.55; color: #333d3a; margin-bottom: 6px; }
+      .component-card li:last-child { margin-bottom: 0; }
+
+      #app { position: relative; flex: 1; height: 100%; min-width: 0; background: #fdfdfc; }
+      #label {
+        position: absolute; top: 16px; left: 16px; color: var(--nv-text); font-size: 13.5px; line-height: 1.4;
+        background: rgba(255, 255, 255, 0.88); padding: 9px 13px; border-radius: 5px; pointer-events: none;
+        border: 1px solid var(--nv-border); max-width: 320px; font-family: var(--font-body);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      }
+
+      .part-tag {
+        position: absolute; top: 0; left: 0; transform: translate(-50%, -100%);
+        font-size: 11.5px; font-weight: 600; color: var(--nv-text); letter-spacing: 0.2px;
+        font-family: var(--font-body);
+        background: #fff; padding: 3px 8px; border-radius: 5px; border: 1px solid var(--nv-border);
+        white-space: nowrap; pointer-events: none; box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+        transition: opacity 0.1s, background 0.1s, color 0.1s;
+      }
+      .part-tag::after {
+        content: ''; position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
+        border: 4px solid transparent; border-top-color: #fff;
+      }
+      .part-tag.active { background: var(--nv-green); color: #06110a; border-color: var(--nv-green-dark); }
+      .part-tag.active::after { border-top-color: var(--nv-green); }
+
+      @media (max-width: 900px) {
+        .overview-wrap { flex-direction: column; }
+        .details-card { width: 100%; }
+        .hero h1 { font-size: 34px; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="topnav">
+      <img class="logo-mark" src="https://static.cdnlogo.com/logos/n/71/nvidia.svg" alt="NVIDIA" />
+      <div class="divider"></div>
+      <span class="section-name">Hardware Academy</span>
+      <nav>
+        <a href="#overview">My Learning</a>
+        <a href="#overview">Find Training</a>
+        <a href="#model-section">Certification</a>
+        <a href="#overview">Support</a>
+      </nav>
+      <div class="spacer"></div>
+      <div class="search-icon"></div>
+      <button class="signin-btn">Sign In</button>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Self-Paced Hardware Training</p>
+      <h1>Jetson AGX Xavier — Module Anatomy</h1>
+      <p>An interactive breakdown of the Jetson AGX Xavier system-on-module: explore the SoC, power delivery, memory subsystem, and interconnect the way you'd walk a new hire through a real board.</p>
+    </header>
+
+    <div class="tabbar">
+      <button class="tab active" data-tab-btn="overview">About</button>
+      <button class="tab" data-tab-btn="model-section">3D Model</button>
+      <div class="tab-spacer"></div>
+    </div>
+
+    <section id="overview" class="overview-wrap">
+      <div class="overview-main">
+        <h2>About this Training</h2>
+        <p>
+          This module walks through the physical anatomy of the Jetson AGX Xavier compute module —
+          the same board you'd inspect during bring-up, thermal validation, or field debugging.
+          Rather than reading a datasheet cold, you can rotate the actual module, click into any
+          populated zone, and read the engineering context behind it: why it's shaped the way it is,
+          what fails first, and how it connects to everything else on the board.
+        </p>
+        <ul class="objectives">
+          <li>Identify the Xavier SoC package and its six integrated compute engines (CPU, GPU, NVDLA, PVA, and more).</li>
+          <li>Recognize the VRM bank's multi-phase power delivery stage and why phase count matters under load.</li>
+          <li>Locate the LPDDR4x memory and PMIC cluster and understand its role in shared CPU/GPU memory access.</li>
+          <li>Understand the high-density edge connector as the module's single mechanical and electrical link to a carrier board.</li>
+          <li>Recognize mounting-standoff torque as a root cause of uneven thermal throttling in the field.</li>
+        </ul>
+      </div>
+      <aside class="details-card">
+        <h3>Training Details</h3>
+        <div class="row"><span class="k">Format</span><span class="v">Interactive 3D</span></div>
+        <div class="row"><span class="k">Level</span><span class="v">Engineer / Field</span></div>
+        <div class="row"><span class="k">Components Covered</span><span class="v">5 zones · 45 parts</span></div>
+        <div class="row"><span class="k">Platform</span><span class="v">Jetson AGX Xavier</span></div>
+        <div class="row"><span class="k">Audience</span><span class="v">NVIDIA Engineering</span></div>
+      </aside>
+    </section>
+
+    <section id="model-section">
+      <div class="model-heading">
+        <h2>Interactive 3D Model</h2>
+        <span class="hint">Drag to orbit · hover or click a component to inspect it</span>
+      </div>
+      <div id="layout">
+        <div id="sidebar">
+          <h1>Module Anatomy</h1>
+          <p class="subtitle">Hover or click a component below — or on the model itself — to highlight it.</p>
+          <div id="component-list"></div>
+        </div>
+        <div id="app">
+          <div id="label">Hover a component. Click to open its description.</div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Decorative tab navigation — the model/component logic below is untouched;
+      // this only smooth-scrolls between the two sections and toggles the active tab state.
+      document.querySelectorAll('[data-tab-btn]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-tab-btn]').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById(btn.dataset.tabBtn)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

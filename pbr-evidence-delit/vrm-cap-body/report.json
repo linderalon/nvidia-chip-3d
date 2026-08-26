@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.844,
+  "estimatedFidelity": 0.844,
+  "targetThreshold": 0.5,
+  "materialId": "vrm-cap-body",
+  "sourceImage": "/Users/alonlinder/jetson-xavier-3d/delit/vrm-cap-bank-delit.png",
+  "outDir": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/vrm-cap-body",
+  "palette": [
+    "#444341",
+    "#6F5E47",
+    "#191615",
+    "#33302E",
+    "#B4B4B4"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/vrm-cap-body/vrm-cap-body_albedo.png",
+      "url": "vrm-cap-body_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/vrm-cap-body/vrm-cap-body_roughness.png",
+      "url": "vrm-cap-body_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/vrm-cap-body/vrm-cap-body_height.png",
+      "url": "vrm-cap-body_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/vrm-cap-body/vrm-cap-body_normal.png",
+      "url": "vrm-cap-body_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/vrm-cap-body/vrm-cap-body_ao.png",
+      "url": "vrm-cap-body_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 1240,
+    "sourceHeight": 245,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 81,
+      "y": 0,
+      "width": 1083,
+      "height": 245
+    },
+    "mask": {
+      "backgroundColor": "#8E8E8E",
+      "backgroundNoise": 0.0,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.861
+    },
+    "mapStats": {
+      "valueRange": 0.3435,
+      "heightP90Gradient": 0.12854,
+      "roughnessBase": 0.762,
+      "roughnessVariation": 0.194,
+      "normalStrength": 0.307,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#444341",
+      "#6F5E47",
+      "#191615",
+      "#33302E",
+      "#B4B4B4"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

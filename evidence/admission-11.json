@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "view-11",
+    "sourcePath": "/Users/alonlinder/Downloads/14/11.png",
+    "width": 1240,
+    "height": 1748,
+    "foregroundCoverage": 0.4472,
+    "largestComponentFraction": 1.0,
+    "pHash": 13758776586937104464,
+    "duplicateOfHash": null
+  }
+}

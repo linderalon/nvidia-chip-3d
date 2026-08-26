@@ -1,0 +1,198 @@
+{
+  "sourceImage": "/Users/alonlinder/Downloads/14/8.png",
+  "zonesDir": "/Users/alonlinder/jetson-xavier-3d/detail-inventory",
+  "detailInventory": {
+    "scanMethod": "component-zones",
+    "targetMinDetails": 16,
+    "details": [
+      {
+        "id": "vrm-inductor-row",
+        "kind": "repeated-component",
+        "description": "8 rounded-rectangular molded inductor blocks in a single row along the top edge of the die-side face, tan/beige body, slight corner chamfer, uniform pitch.",
+        "region": { "x": 0.0, "y": 0.10, "width": 1.0, "height": 0.16, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "vrm-bank.inductor-array" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/vrm-inductor-row.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "vrm-cap-bank",
+        "kind": "repeated-component",
+        "description": "Two rows of 8 smaller rectangular molded polymer capacitor blocks, charcoal body, satin finish, positioned directly below the inductor row.",
+        "region": { "x": 0.0, "y": 0.26, "width": 1.0, "height": 0.14, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "vrm-bank.capacitor-array" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/vrm-cap-bank.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "soc-substrate-patch",
+        "kind": "material-local-override",
+        "description": "Central teal/cyan substrate patch with fine stipple micro-relief surrounding the black overmold marking block; no text baked.",
+        "region": { "x": 0.28, "y": 0.38, "width": 0.48, "height": 0.30, "units": "normalized" },
+        "scale": "micro",
+        "affects": "material",
+        "mapsTo": { "type": "material", "ref": "soc-package.substrate-material.localOverrides.stipple" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/soc-package.png",
+        "confidence": 0.8
+      },
+      {
+        "id": "soc-overmold-lid",
+        "kind": "component",
+        "description": "Black overmold marking block centered on the substrate patch, flat plaque with slightly raised profile; rendered as an unlabeled dark block (no text).",
+        "region": { "x": 0.38, "y": 0.46, "width": 0.28, "height": 0.16, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry",
+        "mapsTo": { "type": "component", "ref": "soc-package.overmold-lid" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/soc-package.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "soc-lid-fiducial-dots",
+        "kind": "micro-feature",
+        "description": "Small dot fiducials at diagonal corners of the substrate patch.",
+        "region": { "x": 0.30, "y": 0.40, "width": 0.44, "height": 0.26, "units": "normalized" },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": { "type": "component", "ref": "soc-package.localFeatures.fiducial-dots" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/soc-package.png",
+        "confidence": 0.6
+      },
+      {
+        "id": "memory-pmic-left-stack",
+        "kind": "repeated-component",
+        "description": "Vertical stack of 3 dark molded IC packages (varying footprint sizes) on the left flank of the SoC, dark gray-black, satin finish.",
+        "region": { "x": 0.0, "y": 0.38, "width": 0.28, "height": 0.45, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "memory-pmic-cluster.left-stack" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/memory-pmic-left.png",
+        "confidence": 0.8
+      },
+      {
+        "id": "memory-pmic-right-stack",
+        "kind": "repeated-component",
+        "description": "Two dark molded IC packages stacked vertically on the right flank of the SoC, similar footprint, dark gray-black satin body.",
+        "region": { "x": 0.72, "y": 0.38, "width": 0.28, "height": 0.45, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "memory-pmic-cluster.right-stack" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/memory-pmic-right.png",
+        "confidence": 0.8
+      },
+      {
+        "id": "bottom-pmic-row",
+        "kind": "repeated-component",
+        "description": "Row of 4 similarly-sized dark molded IC packages along the lower edge of the die-side face, evenly spaced.",
+        "region": { "x": 0.0, "y": 0.82, "width": 1.0, "height": 0.16, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "memory-pmic-cluster.bottom-row" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/bottom-pmic-row.png",
+        "confidence": 0.8
+      },
+      {
+        "id": "edge-heatspreader-band",
+        "kind": "material-local-override",
+        "description": "Copper-hued metallic band running the full perimeter edge of the board, visible on both front (8/11) and back (9/10) faces.",
+        "region": { "x": 0.0, "y": 0.0, "width": 1.0, "height": 0.10, "units": "normalized" },
+        "scale": "macro",
+        "affects": "material",
+        "mapsTo": { "type": "material", "ref": "board-slab.edge-material.copper" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/edge-heatspreader.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "perimeter-through-holes",
+        "kind": "repeated-micro-feature",
+        "description": "Ring of small through-holes/vias around the full board perimeter, visible on both faces, consistent pitch.",
+        "region": { "x": 0.0, "y": 0.0, "width": 1.0, "height": 1.0, "units": "normalized" },
+        "scale": "micro",
+        "affects": "geometry",
+        "mapsTo": { "type": "component", "ref": "board-slab.perimeter-hole-array" },
+        "evidenceRef": "/Users/alonlinder/Downloads/14/8.png",
+        "confidence": 0.75
+      },
+      {
+        "id": "mounting-standoff-bosses",
+        "kind": "repeated-component",
+        "description": "4 large mounting standoffs on the back face (9.png/10.png), each a raised copper-ringed boss with a central through-hole, positioned in the 4 interior quadrants.",
+        "region": { "x": 0.15, "y": 0.45, "width": 0.7, "height": 0.4, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "mounting-standoffs.boss-array" },
+        "evidenceRef": "/Users/alonlinder/Downloads/14/9.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "card-edge-connector-housing",
+        "kind": "component",
+        "description": "Dense card-edge/mezzanine connector block on the back face near the top edge, black plastic insulator housing, protrudes above board plane.",
+        "region": { "x": 0.1, "y": 0.16, "width": 0.75, "height": 0.22, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "edge-connector.housing" },
+        "evidenceRef": "/Users/alonlinder/Downloads/14/9.png",
+        "confidence": 0.85
+      },
+      {
+        "id": "card-edge-connector-contact-rows",
+        "kind": "repeated-micro-feature",
+        "description": "Approximately 8 rows of gold-plated contacts inside the connector housing, instanced pin/contact grid, gold hue, semi-gloss.",
+        "region": { "x": 0.12, "y": 0.18, "width": 0.7, "height": 0.18, "units": "normalized" },
+        "scale": "micro",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "edge-connector.contact-array" },
+        "evidenceRef": "/Users/alonlinder/Downloads/14/9.png",
+        "confidence": 0.75
+      },
+      {
+        "id": "connector-flanking-chip-cluster",
+        "kind": "repeated-component",
+        "description": "Small dark IC packages along the very top edge of the back face, flanking the connector housing on both sides.",
+        "region": { "x": 0.0, "y": 0.0, "width": 1.0, "height": 0.16, "units": "normalized" },
+        "scale": "meso",
+        "affects": "geometry+material",
+        "mapsTo": { "type": "component", "ref": "back-face-passives.top-edge-cluster" },
+        "evidenceRef": "/Users/alonlinder/Downloads/14/9.png",
+        "confidence": 0.7
+      },
+      {
+        "id": "back-face-passive-field",
+        "kind": "material-local-override",
+        "description": "Dense field of small SMD passives scattered across the back face around the standoffs, approximated as a low-relief procedural micro-detail field rather than individually modeled parts.",
+        "region": { "x": 0.0, "y": 0.4, "width": 1.0, "height": 0.6, "units": "normalized" },
+        "scale": "micro",
+        "affects": "material",
+        "mapsTo": { "type": "material", "ref": "board-slab.back-face-material.localOverrides.passive-field" },
+        "evidenceRef": "/Users/alonlinder/Downloads/14/10.png",
+        "confidence": 0.6
+      },
+      {
+        "id": "vrm-inductor-top-marking-block",
+        "kind": "micro-feature",
+        "description": "Each inductor body has a darker top marking region (kept unlabeled, no text baked) distinguishing it from the tan side faces.",
+        "region": { "x": 0.0, "y": 0.10, "width": 1.0, "height": 0.16, "units": "normalized" },
+        "scale": "micro",
+        "affects": "material",
+        "mapsTo": { "type": "material", "ref": "vrm-bank.inductor-material.localOverrides.top-marking-tone" },
+        "evidenceRef": "/Users/alonlinder/jetson-xavier-3d/detail-inventory/vrm-inductor-row.png",
+        "confidence": 0.65
+      },
+      {
+        "id": "board-thickness-profile",
+        "kind": "inferred-geometry",
+        "description": "No true edge/profile view exists; board is treated as a thin flat multilayer-PCB slab. Thickness is INFERRED, not measured, from typical rigid-PCB SoM proportions relative to the observed footprint.",
+        "region": { "x": 0.0, "y": 0.0, "width": 1.0, "height": 1.0, "units": "normalized" },
+        "scale": "macro",
+        "affects": "geometry",
+        "mapsTo": { "type": "component", "ref": "board-slab.geometryDescriptor.thickness" },
+        "evidenceRef": "/Users/alonlinder/Downloads/14/8.png",
+        "confidence": 0.4
+      }
+    ]
+  },
+  "authoringInstruction": "Open each zone crop under zonesDir and replace every detail stub's kind, description, scale, affects, mapsTo, and confidence with what is actually observed. Add more detail entries per zone if a single zone contains multiple distinct marks; do not leave stubs unfilled or unlinked (mapsTo must reference a real component.localFeatures or material.localOverrides entry)."
+}

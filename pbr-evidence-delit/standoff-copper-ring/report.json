@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.5,
+  "materialId": "standoff-copper-ring",
+  "sourceImage": "/Users/alonlinder/jetson-xavier-3d/delit/standoff-tl-delit.png",
+  "outDir": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/standoff-copper-ring",
+  "palette": [
+    "#301D14",
+    "#251710",
+    "#57423A",
+    "#777777",
+    "#090809"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/standoff-copper-ring/standoff-copper-ring_albedo.png",
+      "url": "standoff-copper-ring_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/standoff-copper-ring/standoff-copper-ring_roughness.png",
+      "url": "standoff-copper-ring_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/standoff-copper-ring/standoff-copper-ring_height.png",
+      "url": "standoff-copper-ring_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/standoff-copper-ring/standoff-copper-ring_normal.png",
+      "url": "standoff-copper-ring_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/standoff-copper-ring/standoff-copper-ring_ao.png",
+      "url": "standoff-copper-ring_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 298,
+    "sourceHeight": 420,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 298,
+      "height": 420
+    },
+    "mask": {
+      "backgroundColor": "#2E1C12",
+      "backgroundNoise": 42.556,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.3532
+    },
+    "mapStats": {
+      "valueRange": 0.3928,
+      "heightP90Gradient": 0.05749,
+      "roughnessBase": 0.695,
+      "roughnessVariation": 0.098,
+      "normalStrength": 0.224,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#301D14",
+      "#251710",
+      "#57423A",
+      "#777777",
+      "#090809"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

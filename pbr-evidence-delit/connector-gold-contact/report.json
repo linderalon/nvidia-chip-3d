@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.5,
+  "materialId": "connector-gold-contact",
+  "sourceImage": "/Users/alonlinder/jetson-xavier-3d/delit/connector-block-delit.png",
+  "outDir": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/connector-gold-contact",
+  "palette": [
+    "#2C1E13",
+    "#050606",
+    "#18120F",
+    "#494131",
+    "#73684E"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/connector-gold-contact/connector-gold-contact_albedo.png",
+      "url": "connector-gold-contact_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/connector-gold-contact/connector-gold-contact_roughness.png",
+      "url": "connector-gold-contact_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/connector-gold-contact/connector-gold-contact_height.png",
+      "url": "connector-gold-contact_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/connector-gold-contact/connector-gold-contact_normal.png",
+      "url": "connector-gold-contact_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/connector-gold-contact/connector-gold-contact_ao.png",
+      "url": "connector-gold-contact_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 843,
+    "sourceHeight": 385,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 843,
+      "height": 385
+    },
+    "mask": {
+      "backgroundColor": "#2A1F20",
+      "backgroundNoise": 19.339,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.2842
+    },
+    "mapStats": {
+      "valueRange": 0.3487,
+      "heightP90Gradient": 0.0815,
+      "roughnessBase": 0.706,
+      "roughnessVariation": 0.167,
+      "normalStrength": 0.252,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#2C1E13",
+      "#050606",
+      "#18120F",
+      "#494131",
+      "#73684E"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

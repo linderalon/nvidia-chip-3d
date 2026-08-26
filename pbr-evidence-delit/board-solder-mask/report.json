@@ -1,0 +1,86 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.845,
+  "estimatedFidelity": 0.845,
+  "targetThreshold": 0.5,
+  "materialId": "board-solder-mask",
+  "sourceImage": "/Users/alonlinder/jetson-xavier-3d/delit/plain-board-back-delit.png",
+  "outDir": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/board-solder-mask",
+  "palette": [
+    "#2A1810",
+    "#1B100B",
+    "#513B33",
+    "#0A0605",
+    "#302623"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/board-solder-mask/board-solder-mask_albedo.png",
+      "url": "board-solder-mask_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/board-solder-mask/board-solder-mask_roughness.png",
+      "url": "board-solder-mask_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/board-solder-mask/board-solder-mask_height.png",
+      "url": "board-solder-mask_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/board-solder-mask/board-solder-mask_normal.png",
+      "url": "board-solder-mask_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "/Users/alonlinder/jetson-xavier-3d/pbr-evidence-delit/board-solder-mask/board-solder-mask_ao.png",
+      "url": "board-solder-mask_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 223,
+    "sourceHeight": 245,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 174,
+      "height": 245
+    },
+    "mask": {
+      "backgroundColor": "#777777",
+      "backgroundNoise": 173.205,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.1455
+    },
+    "mapStats": {
+      "valueRange": 0.2225,
+      "heightP90Gradient": 0.02384,
+      "roughnessBase": 0.68,
+      "roughnessVariation": 0.05,
+      "normalStrength": 0.184,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#2A1810",
+      "#1B100B",
+      "#513B33",
+      "#0A0605",
+      "#302623"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped",
+    "low value range weakens height/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}
